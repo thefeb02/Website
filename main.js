@@ -90,30 +90,45 @@ document.addEventListener('DOMContentLoaded', function() {
     icon.style.display = 'inline-block';
   }
 
-  // Navbar scroll effect
+  // Navbar auto-hide on scroll
   const navbar = document.querySelector('.navbar');
-  let lastScroll = 0;
-  
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    // Add/remove scrolled class based on scroll position
-    if (currentScroll <= 0) {
-      navbar.classList.remove('scrolled');
-      return;
-    }
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-      // Scrolling down & past 100px
-      navbar.style.transform = 'translateY(-100%)';
-    } else {
-      // Scrolling up
-      navbar.style.transform = 'translateY(0)';
-      navbar.classList.add('scrolled');
-    }
-    
-    lastScroll = currentScroll;
-  });
+  if (navbar) {
+    let lastScroll = window.pageYOffset;
+    let ticking = false;
+    const hideOffset = 120;
+
+    const updateNavbarOnScroll = () => {
+      const currentScroll = window.pageYOffset;
+      const scrollingDown = currentScroll > lastScroll;
+      const menuOpen = document.body.classList.contains('menu-open') ||
+        document.querySelector('.nav-links')?.classList.contains('active');
+
+      if (currentScroll <= 0) {
+        navbar.classList.remove('nav-hidden', 'nav-scrolled');
+        lastScroll = currentScroll;
+        ticking = false;
+        return;
+      }
+
+      navbar.classList.add('nav-scrolled');
+
+      if (!menuOpen && scrollingDown && currentScroll > hideOffset) {
+        navbar.classList.add('nav-hidden');
+      } else {
+        navbar.classList.remove('nav-hidden');
+      }
+
+      lastScroll = currentScroll;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavbarOnScroll);
+        ticking = true;
+      }
+    });
+  }
 
   // Smooth scrolling for anchor links
   function scrollToTarget(targetId) {

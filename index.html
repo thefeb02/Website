@@ -12,24 +12,25 @@
 <head itemscope itemtype="https://schema.org/WebPage">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sujan Kandel </title>
-    <meta name="description" content="Portfolio of Sujan Kandel - Frontend Developer & IT Student | Explore my web development projects, skills, and journey in technology. Specializing in frontend development and programming.">
-    <meta name="keywords" content="Sujan Kandel, Frontend Developer, Web Developer, IT Student, Portfolio, Web Development, Programming">
+    <title>Sujan Kandel | Web Designer & Backend Developer</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="123.png">
+    <meta name="description" content="Sujan Kandel is a web designer and backend developer. Explore my portfolio, web development projects, and skills in frontend and backend development.">
+    <meta name="keywords" content="Sujan Kandel, Web Designer, Backend Developer, Frontend Developer, Web Developer, Portfolio, Web Development, Programming">
     <meta name="author" content="Sujan Kandel">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thefeb02.github.io/">
-    <meta property="og:title" content="Sujan Kandel">
-    <meta property="og:description" content="Portfolio of Sujan Kandel, a passionate Frontend Developer and IT student. Check out my projects and skills.">
+    <meta property="og:title" content="Sujan Kandel | Web Designer & Backend Developer">
+    <meta property="og:description" content="Sujan Kandel is a web designer and backend developer. Explore my portfolio, projects, and skills in web development.">
     <meta property="og:image" content="https://thefeb02.github.io/images/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://thefeb02.github.io/">
-    <meta property="twitter:title" content="Sujan Kandel | Frontend Developer & IT Student">
-    <meta property="twitter:description" content="Portfolio of Sujan Kandel, a passionate Frontend Developer and IT student. Check out my projects and skills.">
+    <meta property="twitter:title" content="Sujan Kandel | Web Designer & Backend Developer">
+    <meta property="twitter:description" content="Sujan Kandel is a web designer and backend developer. Explore my portfolio, projects, and web development skills.">
     <meta property="twitter:image" content="https://thefeb02.github.io/images/og-image.jpg">
     
     <!-- Canonical URL -->
@@ -547,6 +548,74 @@
             margin-right: auto;
             padding: 0 1rem; /* Match your container padding */
         }
+
+        /* Mobile responsiveness overrides (inline so they win the cascade) */
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-name {
+                font-size: 2.6rem;
+                text-align: center;
+            }
+
+            .name-container {
+                align-items: center;
+                text-align: center;
+            }
+
+            .typewriter-container {
+                justify-content: center;
+                max-width: 100%;
+            }
+
+            .typewriter-text {
+                font-size: 1.3rem;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .skills-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-content {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-name {
+                font-size: 2.2rem;
+            }
+
+            .typewriter-text {
+                font-size: 1.1rem;
+            }
+
+            .project-img {
+                height: 200px;
+            }
+
+            .project-title {
+                font-size: 1.4rem;
+            }
+
+            .project-desc {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body itemscope itemtype="https://schema.org/Person" itemref="person-info">
@@ -623,6 +692,7 @@
                             <div class="typewriter-container">
                                 <span class="typewriter-text"></span>
                             </div>
+                            <p class="hero-description">Web Designer and Backend Developer building modern, responsive websites and web applications.</p>
                         </div>
                     </div>
                     <div class="hero-image-container">
@@ -671,7 +741,7 @@
                 <div class="section-header">
                     <h2>Technical Skills</h2>
                     <p class="section-subtitle">My technical expertise and proficiency</p>
-                    <p class="skills-legend">Proficiency scale: 100% = Advanced, 70% = Intermediate, 40% = Beginner.</p>
+
                 </div>
 
                 <div class="skills-timeline">
@@ -1022,7 +1092,7 @@
         "https://www.linkedin.com/in/thefeb02",
         "https://www.instagram.com/thefeb02"
       ],
-      "jobTitle": "Frontend Developer & IT Student",
+    "jobTitle": "Web Designer & Backend Developer",
       "worksFor": {
         "@type": "EducationalOrganization",
         "name": "Korean Nepal Polytechnic Institute"
