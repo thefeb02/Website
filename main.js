@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastScroll = window.pageYOffset;
     let ticking = false;
     const hideOffset = 120;
+    const desktopOnlyHide = window.matchMedia('(min-width: 992px)');
 
     const updateNavbarOnScroll = () => {
       const currentScroll = window.pageYOffset;
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       navbar.classList.add('nav-scrolled');
 
-      if (!menuOpen && scrollingDown && currentScroll > hideOffset) {
+      if (desktopOnlyHide.matches && !menuOpen && scrollingDown && currentScroll > hideOffset) {
         navbar.classList.add('nav-hidden');
       } else {
         navbar.classList.remove('nav-hidden');
@@ -271,9 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
       heroContent.style.transform = 'translateY(0)';
     }, 300);
   }
-  
-  document.querySelector('.character-container').classList.add('fade-in');
-  document.querySelector('.intro-text').classList.add('fade-in');
+
+  const characterContainer = document.querySelector('.character-container');
+  if (characterContainer) {
+    characterContainer.classList.add('fade-in');
+  }
+
+  const introText = document.querySelector('.intro-text');
+  if (introText) {
+    introText.classList.add('fade-in');
+  }
   document.querySelectorAll('.social-icon').forEach(icon => {
       icon.classList.add('slide-in-right');
   });
@@ -401,97 +409,30 @@ document.addEventListener('DOMContentLoaded', function() {
   // Character hover animation enhancement
   const character = document.querySelector('.character');
   const glowCircle = document.querySelector('.glow-circle');
-  
-  document.addEventListener('mousemove', function(e) {
+
+    if (character && glowCircle) {
+    document.addEventListener('mousemove', function(e) {
       const mouseX = e.clientX;
       const mouseY = e.clientY;
-      
+
       const characterRect = character.getBoundingClientRect();
       const characterCenterX = characterRect.left + characterRect.width / 2;
       const characterCenterY = characterRect.top + characterRect.height / 2;
-      
+
       const deltaX = (mouseX - characterCenterX) / 30;
       const deltaY = (mouseY - characterCenterY) / 30;
-      
+
       // Limit the movement
       const limitedDeltaX = Math.max(-10, Math.min(10, deltaX));
       const limitedDeltaY = Math.max(-10, Math.min(10, deltaY));
-      
+
       // Apply subtle movement to character
       character.style.transform = `translate(calc(-50% + ${limitedDeltaX}px), calc(-50% + ${limitedDeltaY}px))`;
-      
+
       // Move glow circle slightly in opposite direction for parallax effect
       glowCircle.style.transform = `translate(calc(-50% - ${limitedDeltaX * 0.5}px), calc(-50% - ${limitedDeltaY * 0.5}px))`;
-  });
-});
-// Mobile Menu Toggle
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
-
-// Toggle mobile menu
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileMenuBtn.setAttribute('aria-expanded', 
-        mobileMenuBtn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
-    );
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu-btn')) {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// Close mobile menu when clicking a nav link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
     });
-});
-
-// Add active class to current section in viewport
-const sections = document.querySelectorAll('section');
-const navItems = document.querySelectorAll('.nav-link');
-
-const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -50% 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${id}`) {
-                    item.classList.add('active');
-                }
-            });
-        }
-    });
-}, observerOptions);
-
-sections.forEach(section => observer.observe(section));
-
-// Add smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-
-    // If it starts with "#" and has a valid target on the page
-    if (href && href.startsWith('#') && href.length > 1) {
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        scrollToTarget(href);
-      }
     }
-    // Else: Do nothing, allow external link to open normally
-  });
 });
 
 

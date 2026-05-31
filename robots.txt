@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Core SEO directives
+Sitemap: https://www.sujan18.com.np/sitemap.xml
+Host: www.sujan18.com.np
